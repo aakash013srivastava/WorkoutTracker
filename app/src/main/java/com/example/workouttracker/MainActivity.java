@@ -53,7 +53,7 @@ public static String timeCalc(){
                 // Save workout start time
                 startTime = timeCalc();
                 //Add start time to output
-                output += startTime+"\n";
+                output += "BEGIN:"+startTime+"\n";
                 // To add break timestamps to output string
                 breakButton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -62,10 +62,12 @@ public static String timeCalc(){
                             String curDate = timeCalc();
                             output += "Break Start At:"+curDate+"\n";
                             Toast.makeText(getApplicationContext(), curDate, Toast.LENGTH_SHORT).show();
+                            breakButton.setText("Break off");
                         }else{
                             String curDate = timeCalc();
                             output += "Break Over At:"+curDate+"\n";
                             Toast.makeText(getApplicationContext(), curDate, Toast.LENGTH_SHORT).show();
+                            breakButton.setText("Break on");
                         }
                         isBreak = !isBreak;
                     }
@@ -81,7 +83,7 @@ public static String timeCalc(){
                         // Save workout stop time
                         stopTime = timeCalc();
                         // Append stop time to output
-                        output += stopTime;
+                        output += "END:"+stopTime;
                         Intent intent = new Intent(MainActivity.this,WorkoutTimingStat.class);
                         intent.putExtra(TIME_STAT,output);
                         startActivity(intent);
